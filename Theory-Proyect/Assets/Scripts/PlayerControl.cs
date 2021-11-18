@@ -40,4 +40,5 @@ public class PlayerControl : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, -angle, 0));
 
     }
+    
 }
