@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private GameObject player;
-    private float speed= 1;
+    protected GameObject player;
+    protected float speed= 1;
+    protected Vector3 lookDirection;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class Enemy : MonoBehaviour
     public void FollowPlayer()
     {
         player = GameObject.Find("Plaayer");
-        Vector3 lookDirection = (player.transform.position - transform.position).normalized;
+        lookDirection = (player.transform.position - transform.position).normalized;
         Vector3 lookDirection2 = (player.transform.position - transform.position);
         transform.Translate( lookDirection.x * speed * Time.deltaTime,0, lookDirection.z * speed * Time.deltaTime,Space.World);
         float angle = Mathf.Atan2(lookDirection2.z, lookDirection2.x) * Mathf.Rad2Deg;
@@ -32,7 +33,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(4);
         transform.localScale += new Vector3(0,0.5f,0);
     }
-    private void OnCollisionEnter(Collision collision)
+    protected void OnCollisionEnter(Collision collision)
     {
 
         if (collision.gameObject.CompareTag("Escudo"))
