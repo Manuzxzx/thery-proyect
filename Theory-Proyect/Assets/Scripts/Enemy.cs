@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
         float angle = Mathf.Atan2(lookDirection2.z, lookDirection2.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, -angle+180, transform.rotation.z+90));
     }
-    IEnumerator AgresiveAction()
+    public virtual IEnumerator AgresiveAction()
     {
 
         yield return new WaitForSeconds(4);
@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Escudo"))
         {
-            Debug.Log("toco");
             Destroy(gameObject);
         }
      
