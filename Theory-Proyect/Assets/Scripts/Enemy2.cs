@@ -10,6 +10,7 @@ public class Enemy2 : Enemy
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         StartCoroutine(AgresiveAction());
     }
 
@@ -17,6 +18,7 @@ public class Enemy2 : Enemy
     void Update()
     {
         FollowPlayer();
+        EndGame();
     }
     public override IEnumerator AgresiveAction()
     {

@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     public GameObject[] Enemys;
-    public int[] spawnPosx;
-    public int spawnPosz;
+    private int[] spawnPosx;
+    private int spawnPosz;
     private int spawnRange = 5;
     private int spawnPosxInt;
     private int spawnIndex;
+    public bool gameOver;
+    public Text gameOverT;
+    public Button restartB;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +24,8 @@ public class GameManager : MonoBehaviour
         spawnPosx[0] = -spawnRange;
         spawnPosx[1] = spawnRange;
         InvokeRepeating("SpawnEnemy", 4, 1);
+        
+       
        
         
     }
@@ -24,7 +33,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameOver();
     }
     private Vector3 GenerateRandomPosition()
     {
@@ -45,5 +54,22 @@ public class GameManager : MonoBehaviour
     {
         spawnIndex = Random.Range(0, 2);
         Instantiate(Enemys[spawnIndex], GenerateRandomPosition(), Enemys[spawnIndex].transform.rotation);
+        if (gameOver)
+        {
+            CancelInvoke();
+            
+        }
+    }
+    private void GameOver()
+    {
+        if (gameOver)
+        {
+            gameOverT.gameObject.SetActive(true);
+            restartB.gameObject.SetActive(true);
+        }
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

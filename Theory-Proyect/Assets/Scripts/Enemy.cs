@@ -5,11 +5,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     protected GameObject player;
+    protected GameObject gameManager;
     protected float speed= 1;
     protected Vector3 lookDirection;
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("GameManager");
         StartCoroutine(AgresiveAction());
     }
 
@@ -17,6 +19,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         FollowPlayer();
+        EndGame();
     }
     public void FollowPlayer()
     {
@@ -40,7 +43,19 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
         }
-     
+        if (collision.gameObject.CompareTag("Player"))
+        {
+           
+            gameManager.gameObject.GetComponent<GameManager>().gameOver = true;
+        }
+
+    }
+    public void EndGame()
+    {
+        if (gameManager.gameObject.GetComponent<GameManager>().gameOver)
+        {
+            Destroy(gameObject);
+        }
     }
 
 }
