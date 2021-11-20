@@ -11,7 +11,7 @@ public class PlayerControl : MonoBehaviour
     protected Vector3 mousePos;
     private float angle;
     [SerializeField]
-    private Transform target;
+    private Transform target; //ENCAPSULATION
     // Start is called before the first frame update
     void Start()
     {

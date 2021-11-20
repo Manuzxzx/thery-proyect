@@ -14,20 +14,17 @@ public class GameManager : MonoBehaviour
     private int spawnRange = 5;
     private int spawnPosxInt;
     private int spawnIndex;
-    public int score { get ; set ; }
-    public bool gameOver { get; set; }
+    public int score { get ; set ; } //ENCAPSULATION
+    public bool gameOver { get; set; }//ENCAPSULATION
     [SerializeField]
-    private Text gameOverT;
+    private Text gameOverT; //ENCAPSULATION
     [SerializeField]
-    private Button restartB;
+    private Button restartB; //ENCAPSULATION
     [SerializeField]
-    private TMP_Text ScoreText;
+    private TMP_Text ScoreText; //ENCAPSULATION 
     // Start is called before the first frame update
     void Start()
-    {
-        spawnPosx = new int[2];
-        spawnPosx[0] = -spawnRange;
-        spawnPosx[1] = spawnRange;
+    {     
         InvokeRepeating("SpawnEnemy", 4, 1);       
     }
 
@@ -37,8 +34,11 @@ public class GameManager : MonoBehaviour
         ScoreTextManager();
         GameOver();
     }
-    private Vector3 GenerateRandomPosition()
+    private Vector3 GenerateRandomPosition() // ABSTRACTION
     {
+        spawnPosx = new int[2];
+        spawnPosx[0] = -spawnRange;
+        spawnPosx[1] = spawnRange;
         spawnPosz = Random.Range(spawnRange, -spawnRange);
         if (spawnPosz == spawnRange || spawnPosz == -spawnRange)
         {
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             
         }
     }
-    private void GameOver()
+    private void GameOver() // ABSTRACTION
     {
         if (gameOver)
         {
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             restartB.gameObject.SetActive(true);
         }
     }
-    public void RestartGame()
+    public void RestartGame() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
