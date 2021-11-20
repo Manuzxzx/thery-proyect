@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     protected GameObject player;
     protected GameObject gameManager;
-    protected float speed= 1;
+    protected float speed= 2;
     protected Vector3 lookDirection;
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     public virtual IEnumerator AgresiveAction()
     {
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         transform.localScale += new Vector3(0,0.5f,0);
     }
     protected void OnCollisionEnter(Collision collision)
@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Escudo"))
         {
             Destroy(gameObject);
+            gameManager.gameObject.GetComponent<GameManager>().score += 1;
         }
         if (collision.gameObject.CompareTag("Player"))
         {

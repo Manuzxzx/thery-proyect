@@ -14,25 +14,24 @@ public class GameManager : MonoBehaviour
     private int spawnRange = 5;
     private int spawnPosxInt;
     private int spawnIndex;
-    public bool gameOver;
+    public int score { get ; set ; }
+    public bool gameOver { get; set; }
     public Text gameOverT;
     public Button restartB;
+    public TMP_Text ScoreText;
     // Start is called before the first frame update
     void Start()
     {
         spawnPosx = new int[2];
         spawnPosx[0] = -spawnRange;
         spawnPosx[1] = spawnRange;
-        InvokeRepeating("SpawnEnemy", 4, 1);
-        
-       
-       
-        
+        InvokeRepeating("SpawnEnemy", 4, 1);       
     }
 
     // Update is called once per frame
     void Update()
     {
+        ScoreTextManager();
         GameOver();
     }
     private Vector3 GenerateRandomPosition()
@@ -71,5 +70,9 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void ScoreTextManager()
+    {
+        ScoreText.text = "score: " + score;
     }
 }

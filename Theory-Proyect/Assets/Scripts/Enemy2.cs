@@ -12,6 +12,7 @@ public class Enemy2 : Enemy
     {
         gameManager = GameObject.Find("GameManager");
         StartCoroutine(AgresiveAction());
+        speed = 3;
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class Enemy2 : Enemy
     }
     public override IEnumerator AgresiveAction()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         
         while (timePased < 20)
         {

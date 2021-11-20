@@ -6,9 +6,9 @@ public class PlayerControl : MonoBehaviour
 {
     private float verticalInput;
     private float horizontalINput;
-    public float speed = 5;
-    public Vector3 playerPos;
-    public Vector3 mousePos;
+    protected float speed = 5;
+    protected Vector3 playerPos;
+    protected Vector3 mousePos;
     private float angle;
     public Transform target;
     // Start is called before the first frame update
