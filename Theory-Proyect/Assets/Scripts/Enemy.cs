@@ -33,8 +33,8 @@ public class Enemy : MonoBehaviour
     public virtual IEnumerator AgresiveAction()
     {
 
-        yield return new WaitForSeconds(3);
-        transform.localScale += new Vector3(0,0.5f,0);
+        yield return new WaitForSeconds(2);
+        speed = 7;
     }
     protected void OnCollisionEnter(Collision collision)
     {

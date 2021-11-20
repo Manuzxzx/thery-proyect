@@ -16,9 +16,12 @@ public class GameManager : MonoBehaviour
     private int spawnIndex;
     public int score { get ; set ; }
     public bool gameOver { get; set; }
-    public Text gameOverT;
-    public Button restartB;
-    public TMP_Text ScoreText;
+    [SerializeField]
+    private Text gameOverT;
+    [SerializeField]
+    private Button restartB;
+    [SerializeField]
+    private TMP_Text ScoreText;
     // Start is called before the first frame update
     void Start()
     {
